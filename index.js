@@ -5,23 +5,25 @@ const ulEl = document.getElementById("ul-el")
 const deletBtn = document.getElementById("delet-btn")
 const tabBtn = document.getElementById("tabs-btn")
 
+//adding an event listener to saveTab, inputs and delete all events 
 ulEl.addEventListener("click", (e) => removeLeads(e))
+tabBtn.addEventListener("click", () => getCurrentTab())
+deletBtn.addEventListener('dblclick', () => deleteAllLinks())
+inputBtn.addEventListener('click', () => getInputValue())
 
-tabBtn.addEventListener("click", () => {
+function getCurrentTab() {
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    myLead.push(tabs[0].url)
-    localStorage.setItem("myLead", JSON.stringify(myLead) )
-    render(myLead)
+        myLead.push(tabs[0].url)
+        localStorage.setItem( "myLead", JSON.stringify(myLead) )
+        render(myLead)
     })
-})
+}
 
-
-deletBtn.addEventListener("dblclick", () => {
+function deleteAllLinks(){
     localStorage.clear()
     myLead = []
     render(myLead)
-
-})
+}
 
 const leadfromLocalstorage = JSON.parse( localStorage.getItem("myLead") )
 if(leadfromLocalstorage) {
@@ -53,12 +55,13 @@ function render(leads) {
     ulEl.innerHTML = listItem
   }
 
-inputBtn.addEventListener("click", () => {
+  function getInputValue(){
     myLead.push(inputEl.value)
     inputEl.value = ''
     localStorage.setItem("myLead", JSON.stringify(myLead))
     render(myLead)
-})
+  }
+
 
 // delete each save links from the list
 function removeLeads(e) {
