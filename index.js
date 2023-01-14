@@ -1,5 +1,4 @@
 let myLead = []
-
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
@@ -33,7 +32,6 @@ if(leadfromLocalstorage) {
 function render(leads) {
     let listItem = ""
     for(let lead of leads) {
-        //listItem += `"<li><a target='-blank' href='"+ myLead[i] +"'>" + myLead[i] + "</a></li>"`
         listItem += `
             <div class="list-con-btn">
                 <ul>
