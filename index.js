@@ -38,7 +38,7 @@ function render(leads) {
             <div class="list-con-btn">
                 <ul>
                     <li>
-                        <a target='-blank' href='${lead}' class="links-title">
+                        <a target='-blank' href='${lead}' class="links-name">
                             ${lead}
                         </a>
                     </li> 
@@ -66,7 +66,7 @@ inputBtn.addEventListener("click", () => {
 function removeLeads(e) {
     if  (e.target.classList.contains('delete-btn') || e.target.parentElement.classList.contains('delete-con-btn')) {
         const containerToDelete = e.target.closest('.list-con-btn')
-        const linkToDelete = containerToDelete.querySelector('.links-title').textContent.trim() 
+        const linkToDelete = containerToDelete.querySelector('.links-name').textContent.trim() 
         let localStorageLinks = JSON.parse(localStorage.getItem('myLead'))
         localStorageLinks = localStorageLinks.filter(link => link !== linkToDelete) 
         localStorage.setItem('myLead', JSON.stringify(localStorageLinks))
