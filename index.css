@@ -91,6 +91,13 @@ button:active {
   transform: translateY(3px);
 }
 
+button:disabled {
+  background-color: #3e4249;
+  color: #888888;
+  cursor: not-allowed;
+  
+}
+
 .list-con-btn {
   display: flex;
   gap: .6em;
