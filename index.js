@@ -4,12 +4,20 @@ const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
 const deletBtn = document.getElementById("delet-btn")
 const tabBtn = document.getElementById("tabs-btn")
+inputBtn.disabled = true
+isClick = false
 
 //adding an event listener to saveTab, inputs and delete all events 
 ulEl.addEventListener("click", (e) => removeLeads(e))
 tabBtn.addEventListener("click", () => getCurrentTab())
 deletBtn.addEventListener('dblclick', () => deleteAllLinks())
 inputBtn.addEventListener('click', () => getInputValue())
+
+inputEl.addEventListener('keydown', () => {
+    if(inputBtn.disabled = false) {
+        inputBtn.disabled = true
+    }
+})
 
 function getCurrentTab() {
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
