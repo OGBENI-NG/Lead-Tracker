@@ -14,9 +14,7 @@ deletBtn.addEventListener('dblclick', () => deleteAllLinks())
 inputBtn.addEventListener('click', () => getInputValue())
 
 inputEl.addEventListener('keydown', () => {
-    if(inputBtn.disabled = false) {
-        inputBtn.disabled = true
-    }
+    inputBtn.disabled = false
 })
 
 function getCurrentTab() {
@@ -66,6 +64,7 @@ function render(leads) {
   function getInputValue(){
     myLead.push(inputEl.value)
     inputEl.value = ''
+    inputBtn.disabled = true
     localStorage.setItem("myLead", JSON.stringify(myLead))
     render(myLead)
   }
