@@ -669,12 +669,24 @@ video {
   width: 1.5rem;
 }
 
+.w-auto {
+  width: auto;
+}
+
+.w-\[365px\] {
+  width: 365px;
+}
+
 .min-w-\[362px\] {
   min-width: 362px;
 }
 
 .min-w-\[365px\] {
   min-width: 365px;
+}
+
+.min-w-\[360px\] {
+  min-width: 360px;
 }
 
 .max-w-\[362px\] {

@@ -45,7 +45,8 @@ function render(leads) {
   let listItem = ""; // Initialize an empty string to build the list items
   for (let lead of leads) { // Loop through the array of links
     listItem += `
-      <div class='list-con-btn bg-dark/60 backdrop-blur-3xl p-2 px-4 mt-2 rounded-[5px] relative min-w-[365px] m-auto'>
+      <div class='list-con-btn bg-dark/60 backdrop-blur-3xl p-2 px-4 mt-2 
+      rounded-[5px] relative  w-[365px] m-auto '>
         <ul>
           <li>
             <a target='_blank' href='${lead}' class='links-name text-light hover:text-mid'>
