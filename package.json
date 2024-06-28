@@ -1,9 +1,9 @@
 {
   "dependencies": {
+    "firebase": "^10.12.2",
     "tailwindcss": "^3.4.4"
   },
   "scripts": {
-  "build:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch"
-}
-
+    "build:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch"
+  }
 }

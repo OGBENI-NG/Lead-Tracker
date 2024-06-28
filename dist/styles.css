@@ -1,6 +1,6 @@
-/*
-! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
-*/
+/* src/styles.css */
+
+/* ! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -588,13 +588,207 @@ video {
   }
 }
 
-.bg-green-900 {
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.h-\[40px\] {
+  height: 40px;
+}
+
+.h-\[80px\] {
+  height: 80px;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.w-\[25\%\] {
+  width: 25%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.rounded-\[5px\] {
+  border-radius: 5px;
+}
+
+.rounded-bl-\[5px\] {
+  border-bottom-left-radius: 5px;
+}
+
+.rounded-br-\[5px\] {
+  border-bottom-right-radius: 5px;
+}
+
+.rounded-tl-\[5px\] {
+  border-top-left-radius: 5px;
+}
+
+.rounded-tr-\[5px\] {
+  border-top-right-radius: 5px;
+}
+
+.border-t-\[1\.5px\] {
+  border-top-width: 1.5px;
+}
+
+.border-light {
+  --tw-border-opacity: 1;
+  border-color: rgb(227 200 155 / var(--tw-border-opacity));
+}
+
+.bg-brand {
   --tw-bg-opacity: 1;
-  background-color: rgb(20 83 45 / var(--tw-bg-opacity));
+  background-color: rgb(224 93 31 / var(--tw-bg-opacity));
+}
+
+.bg-dark\/60 {
+  background-color: rgb(72 72 72 / 0.6);
+}
+
+.bg-darkest {
+  --tw-bg-opacity: 1;
+  background-color: rgb(25 25 25 / var(--tw-bg-opacity));
+}
+
+.bg-darkest\/90 {
+  background-color: rgb(25 25 25 / 0.9);
+}
+
+.bg-lightest {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 232 211 / var(--tw-bg-opacity));
+}
+
+.bg-mid {
+  --tw-bg-opacity: 1;
+  background-color: rgb(126 175 119 / var(--tw-bg-opacity));
+}
+
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
+.bg-darkest\/45 {
+  background-color: rgb(25 25 25 / 0.45);
+}
+
+.bg-darkest\/10 {
+  background-color: rgb(25 25 25 / 0.1);
+}
+
+.bg-darkest\/50 {
+  background-color: rgb(25 25 25 / 0.5);
+}
+
+.p-5 {
+  padding: 1.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-Nunito {
+  font-family: Nunito, sans-serif;
 }
 
 .text-2xl {
@@ -606,6 +800,10 @@ video {
   font-size: 14px;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .font-extrabold {
   font-weight: 800;
 }
@@ -614,12 +812,51 @@ video {
   font-weight: 500;
 }
 
+.font-semibold {
+  font-weight: 600;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.text-brand {
+  --tw-text-opacity: 1;
+  color: rgb(224 93 31 / var(--tw-text-opacity));
+}
+
+.text-darkest {
+  --tw-text-opacity: 1;
+  color: rgb(25 25 25 / var(--tw-text-opacity));
+}
+
 .text-light {
   --tw-text-opacity: 1;
   color: rgb(227 200 155 / var(--tw-text-opacity));
 }
 
-.text-red-800 {
+.text-lightest {
   --tw-text-opacity: 1;
-  color: rgb(153 27 27 / var(--tw-text-opacity));
+  color: rgb(244 232 211 / var(--tw-text-opacity));
+}
+
+.outline-0 {
+  outline-width: 0px;
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.backdrop-blur-3xl {
+  --tw-backdrop-blur: blur(64px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+/* Custom styles */
+
+.hover\:text-mid:hover {
+  --tw-text-opacity: 1;
+  color: rgb(126 175 119 / var(--tw-text-opacity));
 }
