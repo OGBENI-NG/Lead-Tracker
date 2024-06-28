@@ -7,15 +7,22 @@
     <title>Lead Tracker</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Slabo+13px&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="./dist/styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>⭐ leads tracker ⭐</h1>
-        <input type="text" id="input-el">
-        <div class="btn-container">
+    <div class="bg-green-900">
+        <header className=' text-red-800 '>
+            <div className='pt-4'>
+              <h1 className='font-extrabold text-2xl'>Leeds Tracker</h1>
+              <p className='text-light text-[14px] font-medium'>all favorite websites here.</p>
+            </div>
+          </header>
+        <div>
+            <input type="text" id="input-el">
             <button id="input-btn">SAVE INPUT</button>
+        </div>
+        <div class="btn-container">
             <button id="tabs-btn">SAVE TAB</button>
             <button id="delet-btn">DELETE ALL</button>
         </div>
