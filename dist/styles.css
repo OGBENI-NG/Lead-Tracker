@@ -608,6 +608,10 @@ video {
   top: 0px;
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -663,6 +667,14 @@ video {
 
 .w-6 {
   width: 1.5rem;
+}
+
+.min-w-\[362px\] {
+  min-width: 362px;
+}
+
+.max-w-\[362px\] {
+  max-width: 362px;
 }
 
 .items-center {

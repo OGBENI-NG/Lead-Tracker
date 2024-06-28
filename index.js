@@ -1,56 +1,50 @@
-// Import necessary functions from the Firebase module
-import { database, ref, set, push, onValue, remove } from './firebase.js';
+// Fetching DOM elements
+const inputEl = document.getElementById("input-el");   // Input element
+const inputBtn = document.getElementById("input-btn"); // Add button
+const ulEl = document.getElementById("ul-el");         // <ul> element to display links
+const deleteBtn = document.getElementById("delete-btn"); // Delete all button
+const tabBtn = document.getElementById("tabs-btn");   // Tab button to get current tab URL
 
-// Get references to the DOM elements
-const inputEl = document.getElementById("input-el");
-const inputBtn = document.getElementById("input-btn");
-const ulEl = document.getElementById("ul-el");
-const deleteBtn = document.getElementById("delete-btn");
-const tabBtn = document.getElementById("tabs-btn");
+let linkArr = []; // Array to store links
 
-// Initialize an empty array to store the links
-let linkArr = [];
-
-// Add event listeners to the buttons and input field
-tabBtn.addEventListener("click", () => getCurrentTab()); // Save the current tab
-deleteBtn.addEventListener('dblclick', () => deleteAllLinks()); // Delete all links on double-click
-inputBtn.addEventListener('click', () => addLink()); // Add a new link
-inputEl.addEventListener('keydown', (e) => {
+// Adding event listeners for UI interactions
+tabBtn.addEventListener("click", getCurrentTab);  // Clicking tabBtn fetches current tab URL
+deleteBtn.addEventListener('dblclick', deleteAllLinks); // Double click on deleteBtn clears all links
+inputBtn.addEventListener('click', addLink); // Clicking inputBtn adds a new link
+inputEl.addEventListener('keydown', (e) => { // Listening for Enter key in input field to add link
   if (e.key === 'Enter') {
-    addLink(); // Add a new link on Enter key press
+    addLink();
   }
 });
 
-// Function to get the current tab URL and save it to Firebase
+// Fetch links from local storage on page load
+document.addEventListener('DOMContentLoaded', fetchLinks);
+
+// Function to get current tab URL using Chrome extension API
 function getCurrentTab() {
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    const newLinkRef = push(ref(database, 'links')); // Create a new reference in the database
-    set(newLinkRef, tabs[0].url); // Save the URL to the database
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const newLink = tabs[0].url; // Extract URL from tab object
+    saveLink(newLink); // Save the new link to local storage
   });
 }
 
-// Function to delete all links from Firebase
-function deleteAllLinks(){
-  remove(ref(database, 'links')); // Remove all data from the 'links' reference
-  linkArr = []; // Clear the local array
-  render(linkArr); // Re-render the list
+// Function to delete all links from local storage and array
+function deleteAllLinks() {
+  localStorage.clear(); // Clear local storage
+  linkArr = []; // Reset linkArr
+  render(linkArr); // Render an empty list
 }
 
-// Function to fetch links from Firebase and render them
+// Function to fetch links from local storage on page load
 function fetchLinks() {
-  onValue(ref(database, 'links'), (snapshot) => { // Listen for changes in the 'links' reference
-    linkArr = []; // Clear the local array
-    snapshot.forEach((childSnapshot) => { // Iterate through each child in the snapshot
-      linkArr.push({
-        id: childSnapshot.key, // Get the unique key of each child
-        url: childSnapshot.val() // Get the URL value of each child
-      });
-    });
-    render(linkArr); // Render the list of links
-  });
+  const leadsFromLocalStorage = JSON.parse(localStorage.getItem("linkArr")); // Retrieve links from local storage
+  if (leadsFromLocalStorage) {
+    linkArr = leadsFromLocalStorage; // Populate linkArr with retrieved links
+    render(linkArr); // Render the fetched links
+  }
 }
 
-// Function to render the list of links
+// Function to render links in the UI
 function render(leads) {
   let listItem = "";
   for (let lead of leads) {
@@ -58,41 +52,48 @@ function render(leads) {
       <div class='list-con-btn bg-dark/60 backdrop-blur-3xl p-2 px-4 mt-2 rounded-[5px] relative'>
         <ul>
           <li>
-            <a target='_blank' href='${lead.url}' class='links-name text-light hover:text-mid'>
-              ${lead.url}
+            <a target='_blank' href='${lead}' class='links-name text-light hover:text-mid'>
+              ${lead}
             </a>
           </li> 
         </ul>
         <button 
-          class='delete-btn ml-auto absolute right-0 top-0 bottom-0 px-3 bg-darkest/45' 
-          data-id='${lead.id}'
+          class='delete-btn ml-auto absolute right-0 top-0 bottom-0 px-3 bg-darkest/45'
         >
           <img src='./delete-icon.png' class='h-6 w-6' />
         </button>
       </div>
     `;
   }
-  ulEl.innerHTML = listItem; // Update the inner HTML of the list container
+  ulEl.innerHTML = listItem; // Insert generated HTML into the ulEl element
 
-  // Attach event listeners to the newly created delete buttons
+  // Attach event listeners to delete buttons
   const deleteButtons = document.querySelectorAll('.delete-btn');
-  deleteButtons.forEach(button => {
+  deleteButtons.forEach((button, index) => {
     button.addEventListener('click', function() {
-      const id = this.getAttribute('data-id'); // Get the data-id attribute of the button
-      remove(ref(database, 'links/' + id)); // Remove the corresponding link from Firebase
+      deleteLink(index); // Call deleteLink function on button click
     });
   });
 }
 
 // Function to add a new link
-function addLink(){
-  const newLink = inputEl.value.trim(); // Get the trimmed value of the input field
+function addLink() {
+  const newLink = inputEl.value.trim(); // Trim whitespace from input
   if (newLink) {
-    const newLinkRef = push(ref(database, 'links')); // Create a new reference in the database
-    set(newLinkRef, newLink); // Save the new link to the database
-    inputEl.value = ''; // Clear the input field
+    linkArr.unshift(newLink); // Add new link to the beginning of linkArr
+    inputEl.value = ''; // Clear input field
+    saveLinksToLocalStorage(); // Save updated linkArr to local storage
   }
 }
 
-// Fetch links from Firebase and render them when the document is fully loaded
-document.addEventListener('DOMContentLoaded', fetchLinks);
+// Function to delete a link by index
+function deleteLink(index) {
+  linkArr.splice(index, 1); // Remove link from linkArr
+  saveLinksToLocalStorage(); // Save updated linkArr to local storage
+}
+
+// Function to save linkArr to local storage
+function saveLinksToLocalStorage() {
+  localStorage.setItem("linkArr", JSON.stringify(linkArr)); // Convert linkArr to JSON and store in local storage
+  render(linkArr); // Re-render the list with updated links
+}
