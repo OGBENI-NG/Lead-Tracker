@@ -927,6 +927,11 @@ video {
   font-size: 14px;
 }
 
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1009,12 +1014,26 @@ video {
   max-width: 270px;
 }
 
+.hover\:max-w-\[260px\]:hover {
+  max-width: 260px;
+}
+
 .hover\:overflow-hidden:hover {
   overflow: hidden;
 }
 
 .hover\:text-wrap:hover {
   text-wrap: wrap;
+}
+
+.hover\:text-sm:hover {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.hover\:text-xs:hover {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .hover\:text-mid:hover {
