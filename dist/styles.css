@@ -975,6 +975,23 @@ video {
 
 /* Custom styles */
 
+.hover\:w-max:hover {
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.hover\:w-full:hover {
+  width: 100%;
+}
+
+.hover\:max-w-full:hover {
+  max-width: 100%;
+}
+
+.hover\:text-wrap:hover {
+  text-wrap: wrap;
+}
+
 .hover\:text-mid:hover {
   --tw-text-opacity: 1;
   color: rgb(126 175 119 / var(--tw-text-opacity));
