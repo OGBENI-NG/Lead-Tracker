@@ -20,7 +20,7 @@ inputEl.addEventListener('keydown', (e) => { // Add link when Enter key is press
 // Function to get the current tab's URL and save it to the array and local storage
 function getCurrentTab() {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => { // Query the currently active tab
-    linkArr.push(tabs[0].url); // Add the tab's URL to the array
+    linkArr.unshift(tabs[0].url); // Add the tab's URL to the array
     localStorage.setItem("linkArr", JSON.stringify(linkArr)); // Save the array to local storage
     render(linkArr); // Update the displayed list
   });
@@ -46,10 +46,11 @@ function render(leads) {
   for (let lead of leads) { // Loop through the array of links
     listItem += `
       <div class='list-con-btn bg-dark/60 backdrop-blur-3xl p-2 px-4 mt-2 
-      rounded-[5px] relative  w-[365px] m-auto '>
+      rounded-[5px] relative'>
         <ul>
-          <li>
-            <a target='_blank' href='${lead}' class='links-name text-light hover:text-mid'>
+          <li class='text-light hover:text-mid'>
+            <a target='_blank' href='${lead}' 
+            class='links-name block overflow-hidden text-ellipsis whitespace-nowrap max-w-[250px]'>
               ${lead}
             </a>
           </li> 
@@ -75,8 +76,14 @@ function render(leads) {
   });
 }
 
+
 // Function to add a link from the input field to the array and local storage
 function addLink() {
+  // Check if the input field is empty
+  if (inputEl.value.trim() === '') {
+    return; // Exit the function if the input is empty
+  }
+
   linkArr.unshift(inputEl.value); // Add the new link to the beginning of the array
   inputEl.value = ''; // Clear the input field
   localStorage.setItem("linkArr", JSON.stringify(linkArr)); // Save the updated array to local storage
