@@ -988,6 +988,11 @@ video {
   max-width: 100%;
 }
 
+.hover\:max-w-max:hover {
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+
 .hover\:text-wrap:hover {
   text-wrap: wrap;
 }
