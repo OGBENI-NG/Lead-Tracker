@@ -50,8 +50,8 @@ function render(leads) {
         <ul>
           <li class='text-light hover:text-mid'>
             <a target='_blank' href='${lead}' 
-              class='links-name block overflow-hidden text-ellipsis whitespace-nowrap max-w-[250px]
-              hover:max-w-max hover:text-wrap hover:underline
+              class='links-name block overflow-hidden text-ellipsis whitespace-nowrap max-w-[270px]
+              hover:max-w-[270px] hover:text-wrap hover:underline hover:overflow-hidden
             '>
               ${lead}
             </a>

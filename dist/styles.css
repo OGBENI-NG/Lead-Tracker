@@ -722,6 +722,10 @@ video {
   width: 20px;
 }
 
+.w-\[340px\] {
+  width: 340px;
+}
+
 .min-w-\[362px\] {
   min-width: 362px;
 }
@@ -760,6 +764,10 @@ video {
 
 .max-w-\[250px\] {
   max-width: 250px;
+}
+
+.max-w-\[270px\] {
+  max-width: 270px;
 }
 
 .items-center {
@@ -991,6 +999,18 @@ video {
 .hover\:max-w-max:hover {
   max-width: -moz-max-content;
   max-width: max-content;
+}
+
+.hover\:max-w-\[250px\]:hover {
+  max-width: 250px;
+}
+
+.hover\:max-w-\[270px\]:hover {
+  max-width: 270px;
+}
+
+.hover\:overflow-hidden:hover {
+  overflow: hidden;
 }
 
 .hover\:text-wrap:hover {
