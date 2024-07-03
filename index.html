@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-scrollbar">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,29 +11,33 @@
     <link href="./dist/styles.css" rel="stylesheet">
     
 </head>
-<body class="font-Nunito bg-darkest h-screen overflow-hidden">
+<body class="font-Nunito bg-darkest h-screen overflow-hidden no-scrollbar">
     <header class="bg-darkest/90 backdrop-blur-3xl text-brand text-center h-[80px] capitalize">
         <div class="pt-4">
           <h1 class="text-2xl font-extrabold text-brand">Leeds Tracker</h1>
           <p class="text-light text-[14px] font-medium">all favorite websites links here.</p>
         </div>
     </header>
-    <main class="overflow-hidden p-5 px-4 w-[365px] m-auto">
+    <main class="overflow-hidden p-5 px-3 w-[365px] m-auto">
+       <div>
         <div class="flex items-center h-[38px]">
-            <input 
-            class="w-full h-full outline-0 rounded-tl-[5px] 
-            rounded-bl-[5px] px-2 bg-lightest text-darkest font-semibold" 
-            type="text" 
-            id="input-el">
-            <button class="h-full w-[30%] bg-brand px-2 rounded-tr-[5px] 
-            rounded-br-[5px] text-lightest font-bold text-[14px]" id="input-btn">Add Link</button>
-        </div>
-        <div class="flex items-center gap-4 font-bold my-4">
-            <button class="w-full bg-mid text-darkest py-2 rounded-[5px]" id="tabs-btn">Save Tab</button>
-            <button class="w-full bg-red-600 text-lightest py-2 rounded-[5px]" id="delete-btn">Delete all</button>
-        </div>
+        <input 
+        class="w-full h-full outline-0 rounded-tl-[5px] 
+        rounded-bl-[5px] px-2 bg-lightest text-darkest font-semibold" 
+        type="text" 
+        id="input-el">
+        <button class="h-full w-[30%] bg-brand px-2 rounded-tr-[5px] 
+        rounded-br-[5px] text-lightest font-bold text-[14px]" id="input-btn">Add Link</button>
+    </div>
+    <div class="flex items-center gap-4 font-bold my-4">
+        <button class="w-full bg-mid text-darkest py-2 rounded-[5px]" id="tabs-btn">Save Tab</button>
+        <button class="w-full bg-red-600 text-lightest py-2 rounded-[5px]" id="delete-btn">Delete all</button>
+    </div>
+    </div>
+        <p id="total" class="text-brand font-bold"></p>
         <div class="links-contanier border-t-[1.5px] border-light" id="ul-el"></div>
     </main>
+
     <script src="index.js" type="module"></script>
 </body>
 </html>

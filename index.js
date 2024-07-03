@@ -4,6 +4,7 @@ const inputBtn = document.getElementById("input-btn"); // Button to add link
 const ulEl = document.getElementById("ul-el"); // Unordered list element where links will be displayed
 const deleteBtn = document.getElementById("delete-btn"); // Button to delete all links
 const tabBtn = document.getElementById("tabs-btn"); // Button to save the current tab
+const totalWebsite = document.getElementById('total')// total website saved
 
 let linkArr = []; // Array to store the links
 
@@ -46,12 +47,12 @@ function render(leads) {
   for (let lead of leads) { // Loop through the array of links
     listItem += `
       <div class='list-con-btn bg-dark/60 backdrop-blur-3xl p-2 px-4 mt-2 
-      rounded-[5px] relative'>
+      rounded-[5px] relative transition-all'>
         <ul>
           <li class='text-light hover:text-mid'>
             <a target='_blank' href='${lead}' 
-              class='links-name block overflow-hidden text-ellipsis whitespace-nowrap max-w-[270px]
-              hover:max-w-[270px] hover:text-wrap hover:underline hover:overflow-hidden hover:text-xs
+              class='links-name block overflow-hidden text-ellipsis whitespace-nowrap max-w-[260px]
+              hover:max-w-[260px] hover:text-wrap hover:underline hover:overflow-hidden
             '>
               ${lead}
             </a>
@@ -63,6 +64,7 @@ function render(leads) {
       </div>
     `;
   }
+  totalWebsite.textContent = `Total links: ${linkArr.length}`// get the total number od website save
   ulEl.innerHTML = listItem; // Update the HTML content of the list element
 
   // Attach event listeners to newly created delete buttons
