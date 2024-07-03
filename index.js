@@ -4,7 +4,8 @@ const inputBtn = document.getElementById("input-btn"); // Button to add link
 const ulEl = document.getElementById("ul-el"); // Unordered list element where links will be displayed
 const deleteBtn = document.getElementById("delete-btn"); // Button to delete all links
 const tabBtn = document.getElementById("tabs-btn"); // Button to save the current tab
-const totalWebsite = document.getElementById('total')// total website saved
+const totalWebsite = document.getElementById('total') // Element to display the total number of websites saved
+const doubleLinkWarning = document.getElementById("warning"); // Element to display duplicate link warning
 
 let linkArr = []; // Array to store the links
 
@@ -21,7 +22,15 @@ inputEl.addEventListener('keydown', (e) => { // Add link when Enter key is press
 // Function to get the current tab's URL and save it to the array and local storage
 function getCurrentTab() {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => { // Query the currently active tab
-    linkArr.unshift(tabs[0].url); // Add the tab's URL to the array
+    const newLink = tabs[0].url; // Get the URL of the current tab
+
+    // Check if the link already exists in the array
+    if (linkArr.includes(newLink)) {
+      displayDuplicateWarning(); // Display duplicate warning message
+      return; // Exit the function if the link already exists
+    }
+
+    linkArr.unshift(newLink); // Add the new link to the array
     localStorage.setItem("linkArr", JSON.stringify(linkArr)); // Save the array to local storage
     render(linkArr); // Update the displayed list
   });
@@ -52,8 +61,7 @@ function render(leads) {
           <li class='text-light hover:text-mid'>
             <a target='_blank' href='${lead}' 
               class='links-name block overflow-hidden text-ellipsis whitespace-nowrap max-w-[260px]
-              hover:max-w-[260px] hover:text-wrap hover:underline hover:overflow-hidden
-            '>
+              hover:max-w-[260px] hover:text-wrap hover:underline hover:overflow-hidden'>
               ${lead}
             </a>
           </li> 
@@ -64,7 +72,7 @@ function render(leads) {
       </div>
     `;
   }
-  totalWebsite.textContent = `Total links: ${linkArr.length}`// get the total number od website save
+  totalWebsite.textContent = `Total links: ${linkArr.length}` // Display the total number of websites saved
   ulEl.innerHTML = listItem; // Update the HTML content of the list element
 
   // Attach event listeners to newly created delete buttons
@@ -80,16 +88,30 @@ function render(leads) {
   });
 }
 
-
 // Function to add a link from the input field to the array and local storage
 function addLink() {
-  // Check if the input field is empty
-  if (inputEl.value.trim() === '') {
-    return; // Exit the function if the input is empty
+  const newLink = inputEl.value.trim(); // Get the trimmed value of the input field
+
+  // Check if the input field is empty or if the link already exists in the array
+  if (newLink === '' || linkArr.includes(newLink)) {
+    displayDuplicateWarning(); // Display duplicate warning message
+    return; // Exit the function if the input is empty or the link already exists
   }
 
-  linkArr.unshift(inputEl.value); // Add the new link to the beginning of the array
+  linkArr.unshift(newLink); // Add the new link to the beginning of the array
   inputEl.value = ''; // Clear the input field
   localStorage.setItem("linkArr", JSON.stringify(linkArr)); // Save the updated array to local storage
   render(linkArr); // Update the displayed list
+}
+
+// Function to display a duplicate warning message
+function displayDuplicateWarning() {
+  doubleLinkWarning.textContent = "Link already exists";
+  doubleLinkWarning.style.color = "red";
+  doubleLinkWarning.style.paddingBottom = "3px";
+  doubleLinkWarning.style.fontWeight = "bold";
+  setTimeout(() => {
+    doubleLinkWarning.textContent = ""; // Clear the warning message after a delay
+    inputEl.value = ''
+  }, 4000); // Adjust the delay as needed (in milliseconds)
 }
