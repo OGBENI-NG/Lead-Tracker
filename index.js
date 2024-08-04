@@ -6,10 +6,14 @@ const deleteBtn = document.getElementById("delete-btn"); // Button to delete all
 const tabBtn = document.getElementById("tabs-btn"); // Button to save the current tab
 const totalWebsite = document.getElementById('total') // Element to display the total number of websites saved
 const doubleLinkWarning = document.getElementById("warning"); // Element to display duplicate link warning
+const clearSearchInput = document.getElementById("clear-search-input")
+const searchWebsite = document.getElementById('search-link')
 
 let linkArr = []; // Array to store the links
 
 // Adding event listeners to the respective buttons and input field
+searchWebsite.addEventListener("input", searchLink) // Search links as user types
+clearSearchInput.addEventListener("click", clearSearchInputEl)
 tabBtn.addEventListener("click", getCurrentTab); // Save the current tab's URL on button click
 deleteBtn.addEventListener('dblclick', deleteAllLinks); // Delete all links on double-click
 inputBtn.addEventListener('click', addLink); // Add the link from input field on button click
@@ -114,4 +118,30 @@ function displayDuplicateWarning() {
     doubleLinkWarning.textContent = ""; // Clear the warning message after a delay
     inputEl.value = ''
   }, 4000); // Adjust the delay as needed (in milliseconds)
+}
+
+//function to search save links
+
+function searchLink() {
+  const searchTerm = searchWebsite.value.trim().toLowerCase()
+  const filteredLinks = linkArr.filter(link => link.toLowerCase().includes(searchTerm))
+
+  // Move matching links to the top
+  const noneMatchLinks = linkArr.filter(link => !link.toLowerCase().includes(searchTerm))
+  const sortedLinks = [...filteredLinks, ...noneMatchLinks]
+
+  if(searchTerm.length > 0) {
+    
+    clearSearchInput.style.opacity = "0.75"
+  } else {
+    clearSearchInput.style.opacity = '0'
+  }
+  
+  render(sortedLinks)
+}
+
+function clearSearchInputEl() {
+  searchWebsite.value = ''
+  clearSearchInput.style.opacity = '0'
+  render(linkArr)
 }

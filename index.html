@@ -12,7 +12,6 @@
     
 </head>
 <body class="font-Nunito bg-darkest h-screen overflow-hidden no-scrollbar">
-    
     <header class="bg-darkest/90 backdrop-blur-3xl text-center h-[80px] capitalize">
         <div class="pt-4">
           <h1 class="text-2xl font-extrabold text-brand">Leeds Tracker</h1>
@@ -21,23 +20,60 @@
     </header>
     <main class="overflow-hidden p-5 px-3 w-[365px] m-auto">
         <span id="warning"></span>
-       <div>
-        <div class="flex items-center h-[38px]">
-        <input 
-        class="w-full h-full outline-0 rounded-tl-[5px] 
-        rounded-bl-[5px] px-2 bg-lightest text-darkest font-semibold" 
-        type="text" 
-        id="input-el">
-        <button class="h-full w-[30%] bg-brand px-2 rounded-tr-[5px] 
-        rounded-br-[5px] text-lightest font-bold text-[14px]" id="input-btn">Add Link</button>
-    </div>
-    <div class="flex items-center gap-4 font-bold my-4">
-        <button class="w-full bg-mid text-darkest py-2 rounded-[5px]" id="tabs-btn">Save Tab</button>
-        <button class="w-full bg-red-600 text-lightest py-2 rounded-[5px]" id="delete-btn">Delete all</button>
-    </div>
-    </div>
-        <p id="total" class="text-brand font-bold"></p>
-        
+        <div>
+            <div class="flex items-center h-[38px]">
+                <input 
+                    class="w-full h-full outline-0 rounded-tl-[5px]
+                    rounded-bl-[5px] px-2 bg-lightest text-darkest font-semibold" 
+                    type="text" 
+                    id="input-el"
+                    placeholder=" type website tittle here..."
+                >
+                <button 
+                    class="h-full w-[30%] bg-brand px-2 rounded-tr-[5px] 
+                    rounded-br-[5px] text-light font-bold text-[14px]" 
+                    id="input-btn">Add Link
+                </button>
+            </div>
+            <div class="flex items-center gap-4 font-bold my-4">
+                <button 
+                    class="w-full bg-mid text-darkest py-[5px] rounded-[5px]" 
+                    id="tabs-btn">Save Tab
+                </button>
+                <button 
+                    class="w-full bg-red-600 text-lightest py-[5px] rounded-[5px]" 
+                    id="delete-btn">Delete all
+                </button>
+            </div>
+        </div>
+        <div class="flex items-center w-full pb-2">
+            <div class="relative w-full group transition-opacity duration-500">
+                <button class="absolute top-0 left-0 h-full p-2 rounded-l-lg ">
+                    <img 
+                        src="./search.png" 
+                        alt="search-icon"
+                        class="size-5 "
+                    >
+                </button>
+                <input 
+                    type="text" 
+                    id="search-link"
+                    placeholder="search links"
+                    class="w-[35px] group-hover:w-full h-[34px] border-none outline-none 
+                    group-focus-within:w-full
+                    rounded-[5px] transition-[.5s] pl-9 bg-lightest text-darkest font-semibold"
+                >
+                <button id="clear-search-input" class="absolute top-[10px] right-[6px] opacity-0">
+                    <img 
+                        src="./close-icon.png" 
+                        alt="close-icon"
+                        class="size-4 "
+                    >
+                </button>
+            </div>
+            <p id="total" class="text-brand font-bold text-[14px] w-[40%] pl-2"></p>
+        </div>
+        <!-- save links container -->
         <div class="links-contanier border-t-[1.5px] border-light" id="ul-el"></div>
     </main>
 
