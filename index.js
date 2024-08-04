@@ -59,7 +59,7 @@ function render(leads) {
   let listItem = ""; // Initialize an empty string to build the list items
   for (let lead of leads) { // Loop through the array of links
     listItem += `
-      <div class='list-con-btn bg-dark/60 backdrop-blur-3xl p-2 px-4 mt-2 
+      <div class='list-con-btn bg-lightest/10 p-2 px-4 mt-2 
       rounded-[5px] relative transition-all'>
         <ul>
           <li class='text-light hover:text-mid'>
@@ -76,7 +76,7 @@ function render(leads) {
       </div>
     `;
   }
-  totalWebsite.textContent = `Total links: ${linkArr.length}` // Display the total number of websites saved
+  totalWebsite.textContent = linkArr.length // Display the total number of websites saved
   ulEl.innerHTML = listItem; // Update the HTML content of the list element
 
   // Attach event listeners to newly created delete buttons
@@ -131,8 +131,7 @@ function searchLink() {
   const sortedLinks = [...filteredLinks, ...noneMatchLinks]
 
   if(searchTerm.length > 0) {
-    
-    clearSearchInput.style.opacity = "0.75"
+    clearSearchInput.style.opacity = "1"
   } else {
     clearSearchInput.style.opacity = '0'
   }
