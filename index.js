@@ -96,10 +96,16 @@ function render(leads) {
 function addLink() {
   const newLink = inputEl.value.trim(); // Get the trimmed value of the input field
 
-  // Check if the input field is empty or if the link already exists in the array
-  if (newLink === '' || linkArr.includes(newLink)) {
-    displayDuplicateWarning(); // Display duplicate warning message
-    return; // Exit the function if the input is empty or the link already exists
+  // Check if the input field is empty 
+  if(newLink === '') {
+    displayDuplicateWarning('Input field is empty')
+    return // return the function if input is empty
+  }
+
+  //if the link already exists in the array
+  if(linkArr.includes(newLink)) {
+    displayDuplicateWarning("Link already exists")
+    return // return the function if link already exit in the array
   }
 
   linkArr.unshift(newLink); // Add the new link to the beginning of the array
@@ -109,8 +115,8 @@ function addLink() {
 }
 
 // Function to display a duplicate warning message
-function displayDuplicateWarning() {
-  doubleLinkWarning.textContent = "Link already exists";
+function displayDuplicateWarning(message) {
+  doubleLinkWarning.textContent = message;
   doubleLinkWarning.style.color = "red";
   doubleLinkWarning.style.paddingBottom = "3px";
   doubleLinkWarning.style.fontWeight = "bold";
@@ -121,7 +127,6 @@ function displayDuplicateWarning() {
 }
 
 //function to search save links
-
 function searchLink() {
   const searchTerm = searchWebsite.value.trim().toLowerCase()
   const filteredLinks = linkArr.filter(link => link.toLowerCase().includes(searchTerm))
